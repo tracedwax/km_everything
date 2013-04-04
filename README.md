@@ -26,6 +26,6 @@ In application_controller.rb:
   after_filter :queue_kissmetrics, if: :user_signed_in?
 
   def queue_kissmetrics
-    event_name = KmEverything::KmEvents.new(controller_name, action_name).event
+    event_name = KmEverything::KmEvent.new(controller_name, action_name).event
     KmResque.record(current_user.id, event_name, {}) unless event_name.nil?
   end

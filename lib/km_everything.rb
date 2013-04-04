@@ -4,7 +4,7 @@ module KmEverything
     attr_accessor :event_names
   end
 
-  class KmEvents < Struct.new(:controller_name, :action_name)
+  class KmEvent < Struct.new(:controller_name, :action_name)
     def event
       specified_event || unspecified_event
     end

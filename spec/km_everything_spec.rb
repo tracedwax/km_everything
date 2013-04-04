@@ -1,8 +1,8 @@
 require 'km_everything'
 
-describe KmEverything::KmEvents do
+describe KmEverything::KmEvent do
   describe "#event" do
-    subject { KmEverything::KmEvents.new(controller_name, action_name).event }
+    subject { KmEverything::KmEvent.new(controller_name, action_name).event }
 
     before do
       KmEverything.event_names = { "users" => { "show" => "Viewed User Page" } }
