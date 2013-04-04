@@ -13,6 +13,7 @@ Gem::Specification.new do |gem|
   gem.name          = "km_everything"
   gem.require_paths = ["lib"]
   gem.version       = KmEverything::VERSION
+  gem.license       = "MIT"
 
   gem.required_ruby_version = '>= 1.9.2'
 
