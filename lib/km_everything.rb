@@ -1,6 +1,8 @@
 module KmEverything
-  mattr_accessor :record_every_controller_action
-  mattr_accessor :event_names
+  class << self
+    attr_accessor :record_every_controller_action
+    attr_accessor :event_names
+  end
 
   class KmEvents < Struct.new(:controller_name, :action_name)
     def event
