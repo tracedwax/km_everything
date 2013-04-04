@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'km_everything'
 
 describe KmEverything::KmEvents do
   describe "#event" do
