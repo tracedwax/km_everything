@@ -37,7 +37,7 @@ describe KmEverything::KmEvent do
             KmEverything.record_every_controller_action = false
           end
 
-          it "returns the controller and action name" do
+          it "does not return an event name" do
             subject.should be_nil
           end
         end
@@ -63,7 +63,7 @@ describe KmEverything::KmEvent do
           KmEverything.record_every_controller_action = false
         end
 
-        it "returns the controller and action name" do
+        it "does not return an event name" do
           subject.should be_nil
         end
       end
