@@ -2,7 +2,7 @@ module KmEverything
   class << self
     attr_accessor :record_every_controller_action
     attr_accessor :event_names
-    attr_accessor :excluded_names
+    attr_accessor :events_to_exclude
   end
 
   class KmEvent < Struct.new(:controller_name, :action_name)
@@ -24,15 +24,13 @@ module KmEverything
     end
 
     def event_excluded?
-      if excluded_names
-        if excluded_names[controller_name]
-          excluded_names[controller_name].include?(action_name)
-        end
+      if events_to_exclude && events_to_exclude[controller_name]
+        events_to_exclude[controller_name].include?(action_name)
       end
     end
 
-    def excluded_names
-      KmEverything.excluded_names
+    def events_to_exclude
+      KmEverything.events_to_exclude
     end
   end
 end

@@ -12,7 +12,7 @@ describe KmEverything::KmEvent do
       context "when using a blacklist" do
         before do
           KmEverything.record_every_controller_action = true
-          KmEverything.excluded_names = { "notifications" => ["show", "index"]  }
+          KmEverything.events_to_exclude = { "notifications" => ["show", "index"]  }
         end
 
         context "and the event is on the blacklist" do
@@ -34,7 +34,7 @@ describe KmEverything::KmEvent do
         end
 
         after do
-          KmEverything.excluded_names = nil
+          KmEverything.events_to_exclude = nil
         end
       end
     end
