@@ -1,9 +1,9 @@
 require 'km_everything'
 
 describe KmEverything::KmEvent do
-  describe "#event" do
-    subject { KmEverything::KmEvent.new(controller_name, action_name).event }
+  let(:km_event) { KmEverything::KmEvent.new(controller_name, action_name) }
 
+  describe "#event" do
     before do
       KmEverything.event_names = { "users" => { "show" => "Viewed User Page" } }
     end
@@ -15,7 +15,7 @@ describe KmEverything::KmEvent do
         let(:action_name) { "show" }
 
         it "returns the event name" do
-          subject.should == "Viewed User Page"
+          km_event.event.should == "Viewed User Page"
         end
       end
 
@@ -28,7 +28,7 @@ describe KmEverything::KmEvent do
           end
 
           it "returns the controller and action name" do
-            subject.should == "users#create"
+            km_event.event.should == "users#create"
           end
         end
 
@@ -38,7 +38,7 @@ describe KmEverything::KmEvent do
           end
 
           it "does not return an event name" do
-            subject.should be_nil
+            km_event.event.should be_nil
           end
         end
       end
@@ -54,7 +54,7 @@ describe KmEverything::KmEvent do
         end
 
         it "returns the controller and action name" do
-          subject.should == "some_other_controller#some_other_action"
+          km_event.event.should == "some_other_controller#some_other_action"
         end
       end
 
@@ -64,7 +64,7 @@ describe KmEverything::KmEvent do
         end
 
         it "does not return an event name" do
-          subject.should be_nil
+          km_event.event.should be_nil
         end
       end
     end
