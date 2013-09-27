@@ -84,7 +84,7 @@ If you want to track users before and after sign in, do the following in applica
     end
 
     def queue_kissmetrics
-      event_name = KmEverything::KmEvents.new(controller_name, action_name).event
+      event_name = KmEverything::KmEvent.new(controller_name, action_name).event
       identifier = km_identifier
       KmResque.record(identifier, event_name, {}) unless event_name.nil?
     end
