@@ -20,12 +20,17 @@ Add to gemfile:
 
 In config/initializers/km\_everything\_.rb:
 
-    KmEverything.event_names = YAML.load(File.open("path/to/file.yml"))
+    KmEverything.event_names = YAML.load(Rails.root.join('config','km_everything_event_names.yml'))
     KmEverything.record_every_controller_action = true
+    
+In config/km\_everything\_event\_names.yml
+
+    users:
+      show: "Viewed User Info Page"
 
 And/or:
 
-    KmEverything.events_to_exclude = YAML.load(File.open("path/to/file.yml"))
+    KmEverything.events_to_exclude = YAML.load(Rails.root.join('config','km_everything_to_exclude.yml'))
     KmEverything.record_every_controller_action = true
 
 In config/km\_everything\_to\_exclude.yml:
@@ -84,7 +89,7 @@ If you want to track users before and after sign in, do the following in applica
     end
 
     def queue_kissmetrics
-      event_name = KmEverything::KmEvents.new(controller_name, action_name).event
+      event_name = KmEverything::KmEvent.new(controller_name, action_name).event
       identifier = km_identifier
       KmResque.record(identifier, event_name, {}) unless event_name.nil?
     end
